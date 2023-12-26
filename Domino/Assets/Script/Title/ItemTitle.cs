@@ -28,14 +28,12 @@ public class ItemTitle : MonoBehaviour
 
     private void Start()
     {
-
+        TitleManager.Instance.SpawmImgItem(_ava1, _ava2, data.id1, data.id2);
     }
 
     public void InitTitleData(ItemTitleData data)
     {
         this.data = data;
-        TitleManager.Instance.SpawmImgItem(_ava1, _ava2, data.id1, data.id2);
-        Debug.LogError($"{data.id1} || {data.id2}");
     }
 
     public void OnMouseDown()
@@ -63,5 +61,6 @@ public class ItemTitle : MonoBehaviour
         //{
         TitleManager.Instance.hold.AddItemToSlot(this);
         //  }
+        Debug.LogError("touch");
     }
 }

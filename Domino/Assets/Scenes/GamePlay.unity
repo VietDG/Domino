@@ -412,7 +412,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   titleSlot: {fileID: 0}
-  item: {fileID: 5998103003314558682, guid: 92ed0011119965147a5db66d92df007a, type: 3}
+  titles: {fileID: 5998103003314558682, guid: 92ed0011119965147a5db66d92df007a, type: 3}
+  id: 0
+  ida: 0
+  _ava: {fileID: 0}
+  ava1: {fileID: 0}
 --- !u!224 &997245478
 RectTransform:
   m_ObjectHideFlags: 0

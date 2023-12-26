@@ -7,6 +7,8 @@ public class SlotHolder : MonoBehaviour
 {
     public ItemTitle titleSlot;
 
+    public ItemTitle titles;
+
     private Queue<ItemTitle> gameObjectQueue = new Queue<ItemTitle>();
 
     public int id, ida;
@@ -20,38 +22,29 @@ public class SlotHolder : MonoBehaviour
 
     public void SpawnSlotTitle()
     {
-        ItemTitle title = Instantiate(titleSlot, this.transform);
+        ItemTitle title = Instantiate(titles, this.transform);
         ItemTitleData data = new ItemTitleData(id, ida);
         title.InitTitleData(data);
-        EnqueueGameObject(title);
+        AddTitle(title);
+        InitSlot(title);
     }
 
     public void AddItemToSlot(ItemTitle title)
     {
         MoveItemToSlot(title);
         InitSlot(title);
-        //titleQueue.Enqueue(title);
-        EnqueueGameObject(title);
-        ProcessNextGameObject();
+        AddTitle(title);
+        RemoveTitle();
+        TitleManager.Instance.items.Remove(title);
         TitleManager.Instance.CheckWin();
     }
 
-    public void EnqueueGameObject(ItemTitle obj)
+    public void AddTitle(ItemTitle obj)
     {
         gameObjectQueue.Enqueue(obj);
     }
 
-    //public bool CompareIds(int id1, int id2)
-    //{
-    //    if (id == id1 || id == id2
-    //    || ida == id1 || ida == id2)
-    //    {
-    //        return true;
-    //    }
-    //    return false;
-    //}
-
-    public void ProcessNextGameObject()
+    public void RemoveTitle()
     {
         if (gameObjectQueue.Count <= 1) return;
         ItemTitle activeObj = gameObjectQueue.Dequeue();
@@ -63,19 +56,13 @@ public class SlotHolder : MonoBehaviour
         this.titleSlot = itemTitle;
         itemTitle.transform.parent = this.transform;
         this.titleSlot.data = itemTitle.data;
+        titleSlot.SetTouch(false);
     }
 
     public void MoveItemToSlot(ItemTitle itemTitle)
     {
         itemTitle.transform.DOMove(this.transform.position, 0.25f);
-        //ItemSlot listCheckMatch3Slots = new ItemSlot();
-        ////  List<ItemTitle> destroyList = new List<ItemTitle>();
-        //Sequence mySequence = DOTween.Sequence();
-        //mySequence
-        // .Append(itemTitle.transform.DOMove(this.transform.position, 0.125f).SetEase(Ease.Linear).SetDelay(0.5f));
-        ////  .Append(listCheckMatch3Slots.itemTitle.transform.DOScale(Vector3.one * 0.25f, 0.125f).SetEase(Ease.Linear));
     }
-
 }
 
 
