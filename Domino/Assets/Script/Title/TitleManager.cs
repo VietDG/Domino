@@ -53,4 +53,12 @@ public class TitleManager : SingletonMonoBehaviour<TitleManager>
         ava1.sprite = _spriteValue[id1];
         ava2.sprite = _spriteValue[id2];
     }
+
+    public void CheckWin()
+    {
+        if (items.Count <= 1)
+        {
+            Debug.LogError("Win");
+        }
+    }
 }

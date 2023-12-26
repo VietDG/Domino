@@ -15,7 +15,15 @@ public class SlotHolder : MonoBehaviour
 
     private void Start()
     {
-        TitleManager.Instance.SpawmImgItem(_ava, ava1, id, ida);
+        SpawnSlotTitle();
+    }
+
+    public void SpawnSlotTitle()
+    {
+        ItemTitle title = Instantiate(titleSlot, this.transform);
+        ItemTitleData data = new ItemTitleData(id, ida);
+        title.InitTitleData(data);
+        EnqueueGameObject(title);
     }
 
     public void AddItemToSlot(ItemTitle title)
@@ -25,6 +33,7 @@ public class SlotHolder : MonoBehaviour
         //titleQueue.Enqueue(title);
         EnqueueGameObject(title);
         ProcessNextGameObject();
+        TitleManager.Instance.CheckWin();
     }
 
     public void EnqueueGameObject(ItemTitle obj)
@@ -53,6 +62,7 @@ public class SlotHolder : MonoBehaviour
     {
         this.titleSlot = itemTitle;
         itemTitle.transform.parent = this.transform;
+        this.titleSlot.data = itemTitle.data;
     }
 
     public void MoveItemToSlot(ItemTitle itemTitle)
