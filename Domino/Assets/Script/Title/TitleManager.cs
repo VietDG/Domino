@@ -38,6 +38,7 @@ public class TitleManager : SingletonMonoBehaviour<TitleManager>
 
             item.InitTitleData(data);
             items.Add(item);
+            item.gameObject.name = $"{rd}--{rd1}";
         }
     }
 
