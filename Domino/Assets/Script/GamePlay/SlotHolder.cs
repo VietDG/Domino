@@ -9,7 +9,7 @@ public class SlotHolder : MonoBehaviour
 
     public ItemTitle titles;
 
-    private Queue<ItemTitle> gameObjectQueue = new Queue<ItemTitle>();
+    private Queue<ItemTitle> titleQueues = new Queue<ItemTitle>();
 
     public int id, ida;
 
@@ -34,32 +34,33 @@ public class SlotHolder : MonoBehaviour
         MoveItemToSlot(title);
         InitSlot(title);
         AddTitle(title);
-        RemoveTitle();
         TitleManager.Instance.items.Remove(title);
         TitleManager.Instance.CheckWin();
     }
 
-    public void AddTitle(ItemTitle obj)
+    public void AddTitle(ItemTitle obj)// them vao
     {
-        gameObjectQueue.Enqueue(obj);
+        titleQueues.Enqueue(obj);
+        RemoveTitle();
     }
 
-    public void RemoveTitle()
+    public void RemoveTitle()// xoa o sau
     {
-        if (gameObjectQueue.Count <= 1) return;
-        ItemTitle activeObj = gameObjectQueue.Dequeue();
+        if (titleQueues.Count <= 1) return;
+        ItemTitle activeObj = titleQueues.Dequeue();
         activeObj.gameObject.SetActive(false);
     }
 
-    public void InitSlot(ItemTitle itemTitle)
+    public void InitSlot(ItemTitle itemTitle)//data slot
     {
         this.titleSlot = itemTitle;
         itemTitle.transform.parent = this.transform;
         this.titleSlot.data = itemTitle.data;
         titleSlot.SetTouch(false);
+
     }
 
-    public void MoveItemToSlot(ItemTitle itemTitle)
+    public void MoveItemToSlot(ItemTitle itemTitle) // di chuyen vao o
     {
         itemTitle.transform.DOMove(this.transform.position, 0.25f);
     }

@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 69485285}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -308,7 +308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 817998565}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 997245474}
   - component: {fileID: 997245477}
   m_Layer: 0
-  m_Name: Square
+  m_Name: SlotHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -417,26 +417,21 @@ MonoBehaviour:
   ida: 0
   _ava: {fileID: 0}
   ava1: {fileID: 0}
---- !u!224 &997245478
-RectTransform:
+--- !u!4 &997245478
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997245473}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.32, y: -3.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.32, y: -3.22}
-  m_SizeDelta: {x: 1, y: 1}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1591229802
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,7 +442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1591229803}
   m_Layer: 0
-  m_Name: GameObject (2)
+  m_Name: slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -478,7 +473,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1804684914}
   m_Layer: 0
-  m_Name: GameObject (3)
+  m_Name: slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

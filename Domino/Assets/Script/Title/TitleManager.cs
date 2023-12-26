@@ -34,6 +34,7 @@ public class TitleManager : SingletonMonoBehaviour<TitleManager>
             ItemTitle item = Instantiate(titlePrefab, titleTrans[i]);
 
             ItemTitleData data = new ItemTitleData(rd, rd1);
+            item.gameObject.name = $"{rd},{rd1}";
 
             item.InitTitleData(data);
             items.Add(item);

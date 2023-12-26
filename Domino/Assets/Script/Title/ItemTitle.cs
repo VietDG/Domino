@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -14,6 +15,7 @@ public class ItemTitleData
 
     public ItemTitleData(int id1, int id2) { this.id1 = id1; this.id2 = id2; }
 
+
 }
 
 public class ItemTitle : MonoBehaviour
@@ -25,6 +27,8 @@ public class ItemTitle : MonoBehaviour
     public Collider2D touchCollider2D;
 
     [SerializeField] SpriteRenderer _ava1, _ava2;
+
+    public Type type;
 
     private void Start()
     {
