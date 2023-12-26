@@ -17,7 +17,7 @@ public class TitleManager : SingletonMonoBehaviour<TitleManager>
 
     public SlotHolder hold;
 
-    [SerializeField] Sprite[] _spriteValue;
+    public Sprite[] _spriteValue;
 
     private void Start()
     {
