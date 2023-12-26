@@ -41,15 +41,15 @@ public class SlotHolder : MonoBehaviour
         gameObjectQueue.Enqueue(obj);
     }
 
-    public bool CompareIds(int id1, int id2)
-    {
-        if (id == id1 || id == id2
-        || ida == id1 || ida == id2)
-        {
-            return true;
-        }
-        return false;
-    }
+    //public bool CompareIds(int id1, int id2)
+    //{
+    //    if (id == id1 || id == id2
+    //    || ida == id1 || ida == id2)
+    //    {
+    //        return true;
+    //    }
+    //    return false;
+    //}
 
     public void ProcessNextGameObject()
     {

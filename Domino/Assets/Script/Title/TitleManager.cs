@@ -56,7 +56,7 @@ public class TitleManager : SingletonMonoBehaviour<TitleManager>
 
     public void CheckWin()
     {
-        if (items.Count <= 1)
+        if (items.Count == 0)
         {
             Debug.LogError("Win");
         }

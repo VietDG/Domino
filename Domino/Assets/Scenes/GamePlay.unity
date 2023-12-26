@@ -411,11 +411,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c51662bfe5ad6d4c87c1814942239cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleSlot: {fileID: 5998103003314558682, guid: 92ed0011119965147a5db66d92df007a, type: 3}
-  id: 2
-  ida: 0
-  _ava: {fileID: 0}
-  ava1: {fileID: 0}
+  titleSlot: {fileID: 0}
+  item: {fileID: 5998103003314558682, guid: 92ed0011119965147a5db66d92df007a, type: 3}
 --- !u!224 &997245478
 RectTransform:
   m_ObjectHideFlags: 0

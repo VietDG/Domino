@@ -59,10 +59,9 @@ public class ItemTitle : MonoBehaviour
 
     public void TouchItem()
     {
-        if (TitleManager.Instance.hold.CompareIds(data.id1, data.id2))
-        {
-            TitleManager.Instance.hold.AddItemToSlot(this);
-            TitleManager.Instance.items.Remove(this);
-        }
+        //if (TitleManager.Instance.hold.CompareIds(data.id1, data.id2))
+        //{
+        TitleManager.Instance.hold.AddItemToSlot(this);
+        //  }
     }
 }
