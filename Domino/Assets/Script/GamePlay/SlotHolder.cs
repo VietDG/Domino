@@ -9,6 +9,15 @@ public class SlotHolder : MonoBehaviour
 
     private Queue<ItemTitle> gameObjectQueue = new Queue<ItemTitle>();
 
+    public int id, ida;
+
+    public SpriteRenderer _ava, ava1;
+
+    private void Start()
+    {
+        TitleManager.Instance.SpawmImgItem(_ava, ava1, id, ida);
+    }
+
     public void AddItemToSlot(ItemTitle title)
     {
         MoveItemToSlot(title);
@@ -21,6 +30,16 @@ public class SlotHolder : MonoBehaviour
     public void EnqueueGameObject(ItemTitle obj)
     {
         gameObjectQueue.Enqueue(obj);
+    }
+
+    public bool CompareIds(int id1, int id2)
+    {
+        if (id == id1 || id == id2
+        || ida == id1 || ida == id2)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void ProcessNextGameObject()

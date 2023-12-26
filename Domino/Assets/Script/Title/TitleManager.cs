@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TitleManager : SingletonMonoBehaviour<TitleManager>
 {
@@ -16,6 +17,8 @@ public class TitleManager : SingletonMonoBehaviour<TitleManager>
 
     public SlotHolder hold;
 
+    [SerializeField] Sprite[] _spriteValue;
+
     private void Start()
     {
         SpawmTrans();
@@ -26,9 +29,11 @@ public class TitleManager : SingletonMonoBehaviour<TitleManager>
     {
         for (int i = 0; i < Title; i++)
         {
+            int rd = Random.Range(0, _spriteValue.Length);
+            int rd1 = Random.Range(0, _spriteValue.Length);
             ItemTitle item = Instantiate(titlePrefab, titleTrans[i]);
 
-            ItemTitleData data = new ItemTitleData(i);
+            ItemTitleData data = new ItemTitleData(rd, rd1);
 
             item.InitTitleData(data);
             items.Add(item);
@@ -41,5 +46,11 @@ public class TitleManager : SingletonMonoBehaviour<TitleManager>
         {
             titleTrans.Add(Main.transform.GetChild(i));
         }
+    }
+
+    public void SpawmImgItem(SpriteRenderer ava1, SpriteRenderer ava2, int id1, int id2)
+    {
+        ava1.sprite = _spriteValue[id1];
+        ava2.sprite = _spriteValue[id2];
     }
 }
