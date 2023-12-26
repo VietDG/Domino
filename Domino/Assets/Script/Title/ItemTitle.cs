@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -14,6 +15,7 @@ public class ItemTitleData
 
     public ItemTitleData(int id1, int id2) { this.id1 = id1; this.id2 = id2; }
 
+
 }
 
 public class ItemTitle : MonoBehaviour
@@ -26,16 +28,16 @@ public class ItemTitle : MonoBehaviour
 
     [SerializeField] SpriteRenderer _ava1, _ava2;
 
+    public Type type;
+
     private void Start()
     {
-
+        TitleManager.Instance.SpawmImgItem(_ava1, _ava2, data.id1, data.id2);
     }
 
     public void InitTitleData(ItemTitleData data)
     {
         this.data = data;
-        TitleManager.Instance.SpawmImgItem(_ava1, _ava2, data.id1, data.id2);
-        Debug.LogError($"{data.id1} || {data.id2}");
     }
 
     public void OnMouseDown()
@@ -59,10 +61,10 @@ public class ItemTitle : MonoBehaviour
 
     public void TouchItem()
     {
-        if (TitleManager.Instance.hold.CompareIds(data.id1, data.id2))
-        {
-            TitleManager.Instance.hold.AddItemToSlot(this);
-            TitleManager.Instance.items.Remove(this);
-        }
+        //if (TitleManager.Instance.hold.CompareIds(data.id1, data.id2))
+        //{
+        TitleManager.Instance.hold.AddItemToSlot(this);
+        //  }
+        Debug.LogError("touch");
     }
 }
