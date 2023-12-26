@@ -50,5 +50,7 @@ public class ItemTitle : MonoBehaviour
     {
         TitleManager.Instance.hold.AddItemToSlot(this);
         TitleManager.Instance.items.Remove(this);
+        //GameManager.Instance.TitleManager.hold.AddItemToSlot(this);
+        //GameManager.Instance.TitleManager.items.Remove(this);
     }
 }

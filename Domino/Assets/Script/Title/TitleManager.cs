@@ -42,4 +42,12 @@ public class TitleManager : SingletonMonoBehaviour<TitleManager>
             titleTrans.Add(Main.transform.GetChild(i));
         }
     }
+
+    public void CheckWin()
+    {
+        if (items.Count == 0)
+        {
+            Debug.LogError("Win");
+        }
+    }
 }

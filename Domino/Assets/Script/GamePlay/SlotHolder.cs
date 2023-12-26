@@ -16,6 +16,7 @@ public class SlotHolder : MonoBehaviour
         //titleQueue.Enqueue(title);
         EnqueueGameObject(title);
         ProcessNextGameObject();
+        TitleManager.Instance.CheckWin();
     }
 
     public void EnqueueGameObject(ItemTitle obj)
@@ -34,6 +35,7 @@ public class SlotHolder : MonoBehaviour
     {
         this.titleSlot = itemTitle;
         itemTitle.transform.parent = this.transform;
+        TitleManager.Instance.items.Remove(itemTitle);
     }
 
     public void MoveItemToSlot(ItemTitle itemTitle)
