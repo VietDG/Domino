@@ -9,11 +9,18 @@ public class SlotHolder : MonoBehaviour
 
     private Queue<ItemTitle> gameObjectQueue = new Queue<ItemTitle>();
 
+    private void Start()
+    {
+        // sinh ra 1 item luc dau game
+        ItemTitle item = Instantiate(titleSlot, this.transform);
+        // ItemTitleData data = new ItemTitleData(1);
+        item.SetTouch(false);
+    }
+
     public void AddItemToSlot(ItemTitle title)
     {
         MoveItemToSlot(title);
         InitSlot(title);
-        //titleQueue.Enqueue(title);
         EnqueueGameObject(title);
         ProcessNextGameObject();
         TitleManager.Instance.CheckWin();

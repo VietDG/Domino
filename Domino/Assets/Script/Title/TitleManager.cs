@@ -16,6 +16,10 @@ public class TitleManager : SingletonMonoBehaviour<TitleManager>
 
     public SlotHolder hold;
 
+    public List<int> id1 = new List<int>();
+
+    public List<int> id2 = new List<int>();
+
     private void Start()
     {
         SpawmTrans();
@@ -28,7 +32,7 @@ public class TitleManager : SingletonMonoBehaviour<TitleManager>
         {
             ItemTitle item = Instantiate(titlePrefab, titleTrans[i]);
 
-            ItemTitleData data = new ItemTitleData(i);
+            ItemTitleData data = new ItemTitleData(id1[i], id2[i]);
 
             item.InitTitleData(data);
             items.Add(item);

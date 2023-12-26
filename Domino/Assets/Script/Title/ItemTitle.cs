@@ -7,10 +7,11 @@ using UnityEngine;
 public class ItemTitleData
 {
     public int id;
+    public int id2;
 
     public ItemTitleData() { }
 
-    public ItemTitleData(int id) { this.id = id; }
+    public ItemTitleData(int id, int id2) { this.id = id; this.id2 = id2; }
 
 }
 
@@ -50,6 +51,7 @@ public class ItemTitle : MonoBehaviour
     {
         TitleManager.Instance.hold.AddItemToSlot(this);
         TitleManager.Instance.items.Remove(this);
+
         //GameManager.Instance.TitleManager.hold.AddItemToSlot(this);
         //GameManager.Instance.TitleManager.items.Remove(this);
     }

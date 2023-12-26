@@ -291,6 +291,8 @@ MonoBehaviour:
   items: []
   Main: {fileID: 69485284}
   hold: {fileID: 997245477}
+  id1: 010000000300000000000000
+  id2: 000000000500000003000000
 --- !u!1 &817998564
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c51662bfe5ad6d4c87c1814942239cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleSlot: {fileID: 0}
+  titleSlot: {fileID: 5998103003314558682, guid: 92ed0011119965147a5db66d92df007a, type: 3}
 --- !u!1 &1591229802
 GameObject:
   m_ObjectHideFlags: 0
