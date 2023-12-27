@@ -43,6 +43,7 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
         this.titleSlot = itemTitle;
         itemTitle.transform.parent = this.transform;
         this.titleSlot.data.ID[0] = id;
+        titleSlot.InitTitleData(titleSlot.data, TitleManager.Instance._spriteValue);
         titleSlot.SetTouch(false);
 
     }
