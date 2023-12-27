@@ -100,11 +100,11 @@ public class SlotHolder : MonoBehaviour
         //  itemTitle.transform.DOMove(this.transform.position, 0.25f);
 
         Vector3 thisPos = this.transform.position;
-        float height = (thisPos - target).magnitude / 4;
+        float height = (thisPos - target).magnitude / 2;
         Vector3 direc = (thisPos - target).normalized;
         Vector3 topPos = (thisPos + target) / 2 + new Vector3(-direc.y, direc.x) * height;
 
-        itemTitle.transform.DORotate(new Vector3(0, 0, 360), 0.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear).OnComplete(() =>
+        itemTitle.transform.DORotate(new Vector3(0, 0, -360), 0.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear).OnComplete(() =>
         {
             titleSlot.InitTitleData(titleSlot.data, TitleManager.Instance._spriteValue);
 
