@@ -60,29 +60,29 @@ public class SlotHolder : MonoBehaviour
         //  InitSlot(titleSlot, 0);
     }
 
-    public void AddItemToSlot(ItemTitle title)
-    {
-        foreach (var item in title.data.ID)
-        {
-            if (titleSlot.data.ID[0] == item)
-            {
-                MoveItemToSlot(title);
-                AddTitle(title);
+    //public void AddItemToSlot(ItemTitle title)
+    //{
+    //    foreach (var item in title.data.ID)
+    //    {
+    //        if (titleSlot.data.ID[0] == item)
+    //        {
+    //            MoveItemToSlot(title);
+    //            AddTitle(title);
 
-                TitleManager.Instance.items.Remove(title);
-                TitleManager.Instance.CheckWin();
-                foreach (var item2 in title.data.ID)
-                {
-                    if (titleSlot.data.ID[0] != item2)
-                    {
-                        InitSlot(title, item2);
-                        break;
-                    }
-                }
-                break;
-            }
-        }
-    }
+    //            TitleManager.Instance.items.Remove(title);
+    //            TitleManager.Instance.CheckWin();
+    //            foreach (var item2 in title.data.ID)
+    //            {
+    //                if (titleSlot.data.ID[0] != item2)
+    //                {
+    //                    InitSlot(title, item2);
+    //                    break;
+    //                }
+    //            }
+    //            break;
+    //        }
+    //    }
+    //}
 
     public void AddTitle(ItemTitle obj)// them vao
     {
@@ -97,14 +97,14 @@ public class SlotHolder : MonoBehaviour
         activeObj.gameObject.SetActive(false);
     }
 
-    public void InitSlot(ItemTitle itemTitle, int id)//data slot
-    {
-        this.titleSlot = itemTitle;
-        itemTitle.transform.parent = this.transform;
-        this.titleSlot.data.ID[0] = id;
-        titleSlot.SetTouch(false);
+    //public void InitSlot(ItemTitle itemTitle, int id)//data slot
+    //{
+    //    this.titleSlot = itemTitle;
+    //    itemTitle.transform.parent = this.transform;
+    //    this.titleSlot.data.ID[0] = id;
+    //    titleSlot.SetTouch(false);
 
-    }
+    //}
 
     public void MoveItemToSlot(ItemTitle itemTitle) // di chuyen vao o
     {

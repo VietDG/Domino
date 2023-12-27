@@ -70,7 +70,8 @@ public class ItemTitle : MonoBehaviour
     {
         // if (TitleManager.Instance.hold.CompareIds(data.ID[0], data.ID[1]))
         //  {
-        TitleManager.Instance.hold.AddItemToSlot(this);
+        SlotManager.Instance.AddItemToSlot(this);
+
         // }
         Debug.LogError("touch");
     }

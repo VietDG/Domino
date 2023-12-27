@@ -38,6 +38,6 @@ public class BonusTitle : MonoBehaviour
     public void OnclickNewTitle(ItemTitle title)
     {
         bonusTitle.Remove(title);
-        slotHolder.AddItemToSlot(title);
+        //  slotHolder.AddItemToSlot(title);
     }
 }
