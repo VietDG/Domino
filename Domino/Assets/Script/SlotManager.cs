@@ -16,24 +16,49 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
 
     public void AddItemToSlot(ItemTitle title)
     {
-        foreach (var item in title.data.ID)
-        {
-            if (titleSlot.data.ID[0] == item)
-            {
-                _holder.MoveItemToSlot(title);
-                _holder.AddTitle(title);
+        //if ()
 
-                TitleManager.Instance.items.Remove(title);
-                TitleManager.Instance.CheckWin();
-                foreach (var item2 in title.data.ID)
+        if (titleSlot.type == Type.NGANG)
+        {
+            Debug.Log("Ngang");
+            _holder.MoveItemToSlot(title);
+            _holder.AddTitle(title);
+
+            TitleManager.Instance.items.Remove(title);
+            TitleManager.Instance.CheckWin();
+            foreach (var item2 in title.data.ID)
+            {
+                if (titleSlot.data.ID[0] != item2)
                 {
-                    if (titleSlot.data.ID[0] != item2)
-                    {
-                        InitSlot(title, item2);
-                        break;
-                    }
+                    InitSlot(title, item2);
+                    break;
                 }
-                break;
+            }
+            return;
+        }
+
+        if (titleSlot.type == Type.DOC)
+        {
+            Debug.Log("Doc");
+            foreach (var item in title.data.ID)
+            {
+                if (titleSlot.data.ID[0] == item)
+                {
+                    _holder.MoveItemToSlot(title);
+                    _holder.AddTitle(title);
+
+                    TitleManager.Instance.items.Remove(title);
+                    TitleManager.Instance.CheckWin();
+                    foreach (var item2 in title.data.ID)
+                    {
+                        if (titleSlot.data.ID[0] != item2)
+                        {
+                            InitSlot(title, item2);
+                            break;
+                        }
+                    }
+                    break;
+                }
             }
         }
     }
