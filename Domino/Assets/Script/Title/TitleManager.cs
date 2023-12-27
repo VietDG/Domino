@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,9 +31,10 @@ public class TitleManager : SingletonMonoBehaviour<TitleManager>
         {
             int rd = Random.Range(0, _spriteValue.Length);
             int rd1 = Random.Range(0, _spriteValue.Length);
+            List<int> id = new List<int> { rd, rd1 };
             ItemTitle item = Instantiate(titlePrefab, titleTrans[i]);
 
-            ItemTitleData data = new ItemTitleData(rd, rd1);
+            ItemTitleData data = new ItemTitleData(id);
 
             item.InitTitleData(data);
             items.Add(item);
@@ -49,10 +50,10 @@ public class TitleManager : SingletonMonoBehaviour<TitleManager>
         }
     }
 
-    public void SpawmImgItem(SpriteRenderer ava1, SpriteRenderer ava2, int id1, int id2)
+    public void SpawmImgItem(List<SpriteRenderer> ava, List<int> id)
     {
-        ava1.sprite = _spriteValue[id1];
-        ava2.sprite = _spriteValue[id2];
+        ava[0].sprite = _spriteValue[id[0]]; 
+        ava[1].sprite = _spriteValue[id[1]];
     }
 
     public void CheckWin()

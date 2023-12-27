@@ -80,12 +80,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    id1: 0
-    id2: 0
+    ID: 
   isMouseDown: 0
   touchCollider2D: {fileID: 8338075928511759358}
-  _ava1: {fileID: 1376998600000594207}
-  _ava2: {fileID: 1081985857088564468}
+  _avaLst:
+  - {fileID: 1376998600000594207}
+  - {fileID: 1081985857088564468}
 --- !u!61 &8338075928511759358
 BoxCollider2D:
   m_ObjectHideFlags: 0

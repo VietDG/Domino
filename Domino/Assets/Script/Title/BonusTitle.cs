@@ -12,7 +12,7 @@ public class BonusTitle : MonoBehaviour
 
     [SerializeField] SlotHolder slotHolder;
 
-    private int bonusTitleNumber = 3;
+    //private int bonusTitleNumber = 3;
 
 
     private void Start()
@@ -26,9 +26,9 @@ public class BonusTitle : MonoBehaviour
         {
             int rd = Random.Range(0, TitleManager.Instance._spriteValue.Length);
             int rd1 = Random.Range(0, TitleManager.Instance._spriteValue.Length);
-
+            List<int> id = new List<int> { rd, rd1 };
             ItemTitle item = Instantiate(titlePrefabs, _bonusTitleTrans);
-            ItemTitleData data = new ItemTitleData(rd, rd1);
+            ItemTitleData data = new ItemTitleData(id);
 
             item.InitTitleData(data);
             bonusTitle.Add(item);

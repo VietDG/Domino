@@ -11,19 +11,53 @@ public class SlotHolder : MonoBehaviour
 
     private Queue<ItemTitle> titleQueues = new Queue<ItemTitle>();
 
-    public int id, ida;
-
-    public SpriteRenderer _ava, ava1;
+    public List<int> idSlot = new List<int>();
 
     private void Start()
     {
         SpawnSlotTitle();
     }
 
+    /*  public bool CompareIds(int id1, int id2)
+      {
+          Debug.Log($"Item {id} {ida} ---- Data {id1} {id2}");
+          if ((id == id1 && ida == id2) || (id == id2 && ida == id1))
+          {
+              id = id1;
+              ida = id2;
+              return true;
+          }
+          else if (id == id1)
+          {
+              id = id2;
+              ida = id2;
+              return true;
+          }
+          else if (id == id2)
+          {
+              id = id1;
+              ida = id1;
+              return true;
+          }
+          else if (ida == id1)
+          {
+              id = id2;
+              ida = id2;
+              return true;
+          }
+          else if (ida == id2)
+          {
+              id = id1;
+              ida = id1;
+              return true;
+          }
+          return false;
+      }*/
+
     public void SpawnSlotTitle()
     {
         ItemTitle title = Instantiate(titles, this.transform);
-        ItemTitleData data = new ItemTitleData(id, ida);
+        ItemTitleData data = new ItemTitleData(idSlot);
         title.InitTitleData(data);
         AddTitle(title);
         InitSlot(title);

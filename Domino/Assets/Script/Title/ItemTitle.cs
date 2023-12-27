@@ -8,14 +8,17 @@ using UnityEngine.UI;
 [System.Serializable]
 public class ItemTitleData
 {
-    public int id1;
-    public int id2;
+    public List<int> ID;
 
-    public ItemTitleData() { }
+    public ItemTitleData()
+    {
+        ID = new List<int>();
+    }
 
-    public ItemTitleData(int id1, int id2) { this.id1 = id1; this.id2 = id2; }
-
-
+    public ItemTitleData(List<int> ids)
+    {
+        this.ID = ids;
+    }
 }
 
 public class ItemTitle : MonoBehaviour
@@ -26,13 +29,13 @@ public class ItemTitle : MonoBehaviour
 
     public Collider2D touchCollider2D;
 
-    [SerializeField] SpriteRenderer _ava1, _ava2;
+    [SerializeField] List<SpriteRenderer> _avaLst;
 
     public Type type;
 
     private void Start()
     {
-        TitleManager.Instance.SpawmImgItem(_ava1, _ava2, data.id1, data.id2);
+        TitleManager.Instance.SpawmImgItem(_avaLst, data.ID);
     }
 
     public void InitTitleData(ItemTitleData data)
@@ -61,10 +64,10 @@ public class ItemTitle : MonoBehaviour
 
     public void TouchItem()
     {
-        //if (TitleManager.Instance.hold.CompareIds(data.id1, data.id2))
-        //{
+        // if (TitleManager.Instance.hold.CompareIds(data.ID[0], data.ID[1]))
+        //  {
         TitleManager.Instance.hold.AddItemToSlot(this);
-        //  }
+        // }
         Debug.LogError("touch");
     }
 }
