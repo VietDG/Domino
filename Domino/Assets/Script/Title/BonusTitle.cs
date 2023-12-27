@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,4 +41,25 @@ public class BonusTitle : MonoBehaviour
         bonusTitle.Remove(title);
         //  slotHolder.AddItemToSlot(title);
     }
+
+    //public void Movement(Vector3 target, Transform trans, System.Action callBack)
+    //{
+    //    Vector3 thisPos = this.transform.position;
+    //    float height = (thisPos - target).magnitude / 4;
+    //    Vector3 direc = (thisPos - target).normalized;
+    //    Vector3 topPos = (thisPos + target) / 2 + new Vector3(-direc.y, direc.x) * height;
+
+    //    this.transform.DOScale(0.7f, _duration);
+    //    this.transform.DORotate(new Vector3(0, 0, 360), 1.4f, RotateMode.FastBeyond360).SetEase(Ease.Linear);
+    //    this.transform.DOPath(new Vector3[] { thisPos, topPos, target }, _duration, PathType.CatmullRom).OnComplete(() =>
+    //    {
+    //        SoundManager.Instance.PlaySfxRewind(GlobalSetting.GetSFX("bling"));
+    //        vfx.SetActive(true);
+    //        trans.DOPunchScale(new Vector2(1.1f, 1.1f), 0.1f).SetEase(Ease.OutElastic).OnComplete(() =>
+    //        {
+    //            this.gameObject.SetActive(false);
+    //            callBack?.Invoke();
+    //        });
+    //    });
+    //}
 }
