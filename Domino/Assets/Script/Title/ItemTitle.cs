@@ -35,6 +35,7 @@ public class ItemTitle : MonoBehaviour
 
     private void Start()
     {
+
         TitleManager.Instance.SpawmImgItem(_avaLst, data.ID);
     }
 
