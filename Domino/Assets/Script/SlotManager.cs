@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.WSA;
 
 public class SlotManager : SingletonMonoBehaviour<SlotManager>
 {
     [SerializeField] SlotHolder _holder;
-    [SerializeField] ItemTitle titleSlot;
+    //  [SerializeField] ItemTitle titleSlot;
 
 
     private void Start()
@@ -16,60 +17,36 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
 
     public void AddItemToSlot(ItemTitle title)
     {
-        //if ()
-
-        if (titleSlot.type == Type.NGANG)
+        foreach (var item in title.data.ID)
         {
-            Debug.Log("Ngang");
-            _holder.MoveItemToSlot(title);
-            _holder.AddTitle(title);
-
-            TitleManager.Instance.items.Remove(title);
-            TitleManager.Instance.CheckWin();
-            foreach (var item2 in title.data.ID)
+            if (_holder.titleSlot.data.ID[0] == item)
             {
-                if (titleSlot.data.ID[0] != item2)
-                {
-                    InitSlot(title, item2);
-                    break;
-                }
-            }
-            return;
-        }
+                _holder.MoveItemToSlot(title);
+                _holder.AddTitle(title);
 
-        if (titleSlot.type == Type.DOC)
-        {
-            Debug.Log("Doc");
-            foreach (var item in title.data.ID)
-            {
-                if (titleSlot.data.ID[0] == item)
+                TitleManager.Instance.items.Remove(title);
+                TitleManager.Instance.CheckWin();
+                foreach (var item2 in title.data.ID)
                 {
-                    _holder.MoveItemToSlot(title);
-                    _holder.AddTitle(title);
-
-                    TitleManager.Instance.items.Remove(title);
-                    TitleManager.Instance.CheckWin();
-                    foreach (var item2 in title.data.ID)
+                    if (_holder.titleSlot.data.ID[0] != item2)
                     {
-                        if (titleSlot.data.ID[0] != item2)
-                        {
-                            InitSlot(title, item2);
-                            break;
-                        }
+                        InitSlot(title, item2);
+                        break;
                     }
-                    break;
                 }
+                break;
             }
         }
     }
 
     public void InitSlot(ItemTitle itemTitle, int id)//data slot
     {
-        this.titleSlot = itemTitle;
-        itemTitle.transform.parent = this.transform;
-        this.titleSlot.data.ID[0] = id;
-        titleSlot.InitTitleData(titleSlot.data, TitleManager.Instance._spriteValue);
-        titleSlot.SetTouch(false);
+        _holder.titleSlot = itemTitle;
+        itemTitle.transform.parent = _holder.transform;
+        _holder.titleSlot.data.ID[0] = id;
+        //  _holder.titleSlot.InitTitleData(_holder.titleSlot.data, TitleManager.Instance._spriteValue);
+        _holder.titleSlot.SetTouch(false);
+        _holder.CheckPos();
 
     }
 }

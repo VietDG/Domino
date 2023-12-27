@@ -45,13 +45,6 @@ public class ItemTitle : MonoBehaviour
 
         _avaLst[0].sprite = sprite[data.ID[0]];
         _avaLst[1].sprite = sprite[data.ID[1]];
-
-        if (type == Type.NGANG)
-        {
-            this.transform.Rotate(0, 0, 90);
-            this.transform.position += new Vector3(0, 0.5f, 0);
-
-        }
     }
 
     public void OnMouseDown()
