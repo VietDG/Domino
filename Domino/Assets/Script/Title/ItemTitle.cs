@@ -49,6 +49,8 @@ public class ItemTitle : MonoBehaviour
         if (type == Type.NGANG)
         {
             this.transform.Rotate(0, 0, 90);
+            this.transform.position += new Vector3(0, 0.5f, 0);
+
         }
     }
 
