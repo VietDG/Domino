@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.WSA;
 
 public class SlotManager : SingletonMonoBehaviour<SlotManager>
 {
     [SerializeField] SlotHolder _holder;
-    [SerializeField] ItemTitle titleSlot;
+    //  [SerializeField] ItemTitle titleSlot;
 
 
     private void Start()
@@ -16,9 +17,7 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
 
     public void AddItemToSlot(ItemTitle title)
     {
-        //if ()
-
-        if (titleSlot.type == Type.NGANG)
+        if (_holder.titleSlot.type == Type.NGANG)
         {
             Debug.Log("Ngang");
             _holder.MoveItemToSlot(title);
@@ -28,21 +27,23 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
             TitleManager.Instance.CheckWin();
             foreach (var item2 in title.data.ID)
             {
-                if (titleSlot.data.ID[0] != item2)
+                if (_holder.titleSlot.data.ID[0] != item2)
                 {
-                    InitSlot(title, item2);
-                    break;
+                    if (_holder.titleSlot.data.ID[0] != item2)
+                    {
+                        InitSlot(title, item2);
+                        break;
+                    }
                 }
             }
             return;
         }
-
-        if (titleSlot.type == Type.DOC)
+        if (_holder.titleSlot.type == Type.DOC)
         {
             Debug.Log("Doc");
             foreach (var item in title.data.ID)
             {
-                if (titleSlot.data.ID[0] == item)
+                if (_holder.titleSlot.data.ID[0] == item)
                 {
                     _holder.MoveItemToSlot(title);
                     _holder.AddTitle(title);
@@ -51,7 +52,7 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
                     TitleManager.Instance.CheckWin();
                     foreach (var item2 in title.data.ID)
                     {
-                        if (titleSlot.data.ID[0] != item2)
+                        if (_holder.titleSlot.data.ID[0] != item2)
                         {
                             InitSlot(title, item2);
                             break;
@@ -61,15 +62,21 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
                 }
             }
         }
+
     }
 
     public void InitSlot(ItemTitle itemTitle, int id)//data slot
     {
-        this.titleSlot = itemTitle;
-        itemTitle.transform.parent = this.transform;
-        this.titleSlot.data.ID[0] = id;
-        titleSlot.InitTitleData(titleSlot.data, TitleManager.Instance._spriteValue);
-        titleSlot.SetTouch(false);
+        _holder.titleSlot = itemTitle;
+        itemTitle.transform.parent = _holder.transform;
+        _holder.titleSlot.data.ID[0] = id;
+        _holder.titleSlot.InitTitleData(_holder.titleSlot.data, TitleManager.Instance._spriteValue);
+        _holder.titleSlot.SetTouch(false);
+        _holder.CheckPos();
 
     }
 }
+
+
+
+
