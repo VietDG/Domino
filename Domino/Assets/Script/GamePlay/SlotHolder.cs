@@ -106,7 +106,7 @@ public class SlotHolder : MonoBehaviour
 
         itemTitle.transform.DORotate(new Vector3(0, 0, -360), 0.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear).OnComplete(() =>
         {
-            titleSlot.InitTitleData(titleSlot.data, TitleManager.Instance._spriteValue);
+            //  titleSlot.InitTitleData(titleSlot.data, TitleManager.Instance._spriteValue);
 
         });
         itemTitle.transform.DOPath(new Vector3[] { thisPos, topPos, target }, 0.6f, PathType.CatmullRom).OnComplete(() =>
