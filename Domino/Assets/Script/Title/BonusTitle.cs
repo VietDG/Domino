@@ -24,13 +24,13 @@ public class BonusTitle : MonoBehaviour
     {
         for (int i = 0; i < bonusTitle.Count; i++)
         {
-            int rd = Random.Range(0, TitleManager.Instance._spriteValue.Length);
-            int rd1 = Random.Range(0, TitleManager.Instance._spriteValue.Length);
+            int rd = Random.Range(0, TitleManager.Instance._spriteValue.Count);
+            int rd1 = Random.Range(0, TitleManager.Instance._spriteValue.Count);
             List<int> id = new List<int> { rd, rd1 };
             ItemTitle item = Instantiate(titlePrefabs, _bonusTitleTrans);
             ItemTitleData data = new ItemTitleData(id);
 
-            item.InitTitleData(data);
+            //   item.InitTitleData(data);
             bonusTitle.Add(item);
         }
     }

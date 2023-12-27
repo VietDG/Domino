@@ -36,12 +36,15 @@ public class ItemTitle : MonoBehaviour
     private void Start()
     {
 
-        TitleManager.Instance.SpawmImgItem(_avaLst, data.ID);
     }
 
-    public void InitTitleData(ItemTitleData data)
+    public void InitTitleData(ItemTitleData data, List<Sprite> sprite)
     {
         this.data = data;
+        //  TitleManager.Instance.SpawmImgItem(_avaLst, data.ID);
+
+        _avaLst[0].sprite = sprite[data.ID[0]];
+        _avaLst[1].sprite = sprite[data.ID[1]];
     }
 
     public void OnMouseDown()

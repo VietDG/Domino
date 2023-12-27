@@ -7,8 +7,6 @@ public class SlotHolder : MonoBehaviour
 {
     public ItemTitle titleSlot;
 
-    public ItemTitle titles;
-
     private Queue<ItemTitle> titleQueues = new Queue<ItemTitle>();
 
     public List<int> idSlot = new List<int>();
@@ -56,11 +54,10 @@ public class SlotHolder : MonoBehaviour
 
     public void SpawnSlotTitle()
     {
-        ItemTitle title = Instantiate(titles, this.transform);
         ItemTitleData data = new ItemTitleData(idSlot);
-        title.InitTitleData(data);
-        AddTitle(title);
-        InitSlot(title, 0);
+        titleSlot.InitTitleData(data, TitleManager.Instance._spriteValue);
+        AddTitle(titleSlot);
+        //  InitSlot(titleSlot, 0);
     }
 
     public void AddItemToSlot(ItemTitle title)
@@ -70,8 +67,8 @@ public class SlotHolder : MonoBehaviour
             if (titleSlot.data.ID[0] == item)
             {
                 MoveItemToSlot(title);
-                //  InitSlot(title);
                 AddTitle(title);
+
                 TitleManager.Instance.items.Remove(title);
                 TitleManager.Instance.CheckWin();
                 foreach (var item2 in title.data.ID)
