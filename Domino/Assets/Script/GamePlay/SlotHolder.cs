@@ -56,7 +56,7 @@ public class SlotHolder : MonoBehaviour
 
     public void SpawnSlotTitle()
     {
-        ItemTitleData data = new ItemTitleData(idSlot);
+        ItemTitleData data = new ItemTitleData(idSlot, new Vector2Int(0, 0));
         titleSlot.InitTitleData(data, TitleManager.Instance._spriteValue);
         AddTitle(titleSlot);
         //  InitSlot(titleSlot, 0);
