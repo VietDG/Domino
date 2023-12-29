@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.WSA;
-using static UnityEngine.GraphicsBuffer;
 
 public class SlotHolder : MonoBehaviour
 {
@@ -17,42 +16,6 @@ public class SlotHolder : MonoBehaviour
     {
         SpawnSlotTitle();
     }
-
-    /*  public bool CompareIds(int id1, int id2)
-      {
-          Debug.Log($"Item {id} {ida} ---- Data {id1} {id2}");
-          if ((id == id1 && ida == id2) || (id == id2 && ida == id1))
-          {
-              id = id1;
-              ida = id2;
-              return true;
-          }
-          else if (id == id1)
-          {
-              id = id2;
-              ida = id2;
-              return true;
-          }
-          else if (id == id2)
-          {
-              id = id1;
-              ida = id1;
-              return true;
-          }
-          else if (ida == id1)
-          {
-              id = id2;
-              ida = id2;
-              return true;
-          }
-          else if (ida == id2)
-          {
-              id = id1;
-              ida = id1;
-              return true;
-          }
-          return false;
-      }*/
 
     public void SpawnSlotTitle()
     {
@@ -73,8 +36,10 @@ public class SlotHolder : MonoBehaviour
     {
         if (titleSlot.type == Type.NGANG)
         {
+            titleSlot.transform.position = this.transform.position;
             titleSlot.transform.Rotate(0, 0, 90);
             titleSlot.transform.position += new Vector3(0, 0.5f, 0);
+            Debug.Log(1);
         }
     }
 
