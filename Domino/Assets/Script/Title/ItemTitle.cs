@@ -9,15 +9,17 @@ using UnityEngine.UI;
 public class ItemTitleData
 {
     public List<int> ID;
+    public Vector2Int pos;
 
     public ItemTitleData()
     {
         ID = new List<int>();
     }
 
-    public ItemTitleData(List<int> ids)
+    public ItemTitleData(List<int> ids, Vector2Int pos)
     {
         this.ID = ids;
+        this.pos = pos;
     }
 }
 
@@ -74,5 +76,10 @@ public class ItemTitle : MonoBehaviour
 
         // }
         Debug.LogError("touch");
+    }
+
+    public void SetPosTitle(Vector3 target)
+    {
+        this.transform.position = target;
     }
 }

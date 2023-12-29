@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public enum Type
@@ -12,17 +13,21 @@ public enum Type
 
 public class TitleManager : SingletonMonoBehaviour<TitleManager>
 {
-    public int Title;
-
     public ItemTitle titlePrefab;
-
-    public List<ItemTitle> items = new List<ItemTitle>();
 
     public Transform Main;
 
     public SlotHolder hold;
 
     public List<Sprite> _spriteValue;
+
+    public Tilemap tileMap;
+
+    public Tile tile;
+
+    public List<ItemTitle> items = new List<ItemTitle>();
+
+    public List<ItemTitleData> dataTitle = new List<ItemTitleData>();
 
     private void Start()
     {
@@ -31,26 +36,30 @@ public class TitleManager : SingletonMonoBehaviour<TitleManager>
 
     public void SpawnTitle()// sinh ra data
     {
-        for (int i = 0; i < Title; i++)
+        tileMap.GetComponent<TilemapRenderer>().enabled = false;
+
+        for (int y = tileMap.cellBounds.yMax; y >= tileMap.cellBounds.yMin; y--)
         {
-            int rd = Random.Range(0, _spriteValue.Count);
-            int rd1 = Random.Range(0, _spriteValue.Count);
-            List<int> id = new List<int> { rd, rd1 };
+            for (int x = tileMap.cellBounds.xMin; x < tileMap.cellBounds.xMax; x++)
+            {
+                if (tileMap.HasTile(new Vector3Int(x, y, 0)))
+                {
+                    int rd = Random.Range(0, _spriteValue.Count);
+                    int rd1 = Random.Range(0, _spriteValue.Count);
 
-            ItemTitle item = Instantiate(titlePrefab, Main.GetChild(i));
+                    List<int> id = new List<int> { rd, rd1 };
+                    ItemTitle item = Instantiate(titlePrefab, Vector3.zero, Quaternion.identity, Main);
 
-            ItemTitleData data = new ItemTitleData(id);
+                    ItemTitleData data = new ItemTitleData(id, new Vector2Int(x, y));
+                    //     tileMap.SetTile(new Vector3Int(data.pos.x, data.pos.y), tile);
+                    item.SetPosTitle(new Vector3(data.pos.x, data.pos.y, 0));
 
-            item.InitTitleData(data, _spriteValue);
-            items.Add(item);
-            item.gameObject.name = $"{rd}--{rd1}";
+                    item.InitTitleData(data, _spriteValue);
+                    items.Add(item);
+                    item.gameObject.name = $"{rd}--{rd1}";
+                }
+            }
         }
-    }
-
-    public void SpawmImgItem(List<SpriteRenderer> ava, List<int> id)
-    {
-        ava[0].sprite = _spriteValue[id[0]];
-        ava[1].sprite = _spriteValue[id[1]];
     }
 
     public void CheckWin()

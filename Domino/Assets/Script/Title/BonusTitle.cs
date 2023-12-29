@@ -23,17 +23,17 @@ public class BonusTitle : MonoBehaviour
 
     public void AddBonusTitle()
     {
-        for (int i = 0; i < bonusTitleNumber; i++)
-        {
-            int rd = Random.Range(0, TitleManager.Instance._spriteValue.Count);
-            int rd1 = Random.Range(0, TitleManager.Instance._spriteValue.Count);
-            List<int> id = new List<int> { rd, rd1 };
-            ItemTitle item = Instantiate(titlePrefabs, _bonusTitleTrans);
-            ItemTitleData data = new ItemTitleData(id);
+        //for (int i = 0; i < bonusTitleNumber; i++)
+        //{
+        //    int rd = Random.Range(0, TitleManager.Instance._spriteValue.Count);
+        //    int rd1 = Random.Range(0, TitleManager.Instance._spriteValue.Count);
+        //    List<int> id = new List<int> { rd, rd1 };
+        //    ItemTitle item = Instantiate(titlePrefabs, _bonusTitleTrans);
+        //    ItemTitleData data = new ItemTitleData(id);
 
-            item.InitTitleData(data, TitleManager.Instance._spriteValue);
-            bonusTitle.Add(item);
-        }
+        //    item.InitTitleData(data, TitleManager.Instance._spriteValue);
+        //    bonusTitle.Add(item);
+        //}
     }
 
     public void OnclickNewTitle(ItemTitle title)
