@@ -24,7 +24,6 @@ public class SlotHolder : MonoBehaviour
         ItemTitleData data = new ItemTitleData(idSlot, new Vector2Int(0, 0));
         titleSlot.InitTitleData(data, TitleManager.Instance._spriteValue);
         AddTitle(titleSlot);
-        //  InitSlot(titleSlot, 0);
         CheckPos();
     }
 
@@ -41,7 +40,6 @@ public class SlotHolder : MonoBehaviour
             titleSlot.transform.position = trans.transform.position;
             titleSlot.transform.Rotate(0, 0, 90);
             titleSlot.transform.position += new Vector3(0, 0.5f, 0);
-            Debug.Log(1);
         }
     }
 
@@ -51,15 +49,6 @@ public class SlotHolder : MonoBehaviour
         ItemTitle activeObj = titleQueues.Dequeue();
         activeObj.gameObject.SetActive(false);
     }
-
-    //public void InitSlot(ItemTitle itemTitle, int id)//data slot
-    //{
-    //    this.titleSlot = itemTitle;
-    //    itemTitle.transform.parent = this.transform;
-    //    this.titleSlot.data.ID[0] = id;
-    //    titleSlot.SetTouch(false);
-
-    //}
 
     public void MoveItemToSlot(ItemTitle itemTitle) // di chuyen vao o
     {
@@ -84,6 +73,28 @@ public class SlotHolder : MonoBehaviour
     public void MoveItemNgang(ItemTitle itemTitle)
     {
         itemTitle.transform.DOMove(new Vector3(trans.transform.position.x, trans.position.y + 0.5f), 0.25f);
+    }
+
+    public void InitTitleDataToSlot(ItemTitle itemTitle)
+    {
+        titleSlot = itemTitle;
+        itemTitle.transform.parent = trans.transform;
+        titleSlot.data = itemTitle.data;
+
+        titleSlot.SetTouch(false);
+        CheckPos();
+    }
+
+    public void RemoveDataFormList(ItemTitle itemTitle, bool isNgang)
+    {
+        AddTitle(itemTitle);
+        TitleManager.Instance.items.Remove(itemTitle);
+        if (isNgang)
+        {
+            MoveItemNgang(itemTitle);
+            return;
+        }
+        MoveItemToSlot(itemTitle);
     }
 }
 

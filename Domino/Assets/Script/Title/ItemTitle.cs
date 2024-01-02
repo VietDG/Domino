@@ -37,7 +37,6 @@ public class ItemTitle : MonoBehaviour
 
     private void Start()
     {
-
     }
 
     public void InitTitleData(ItemTitleData data, List<Sprite> sprite)
