@@ -16,38 +16,22 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
 
     public void AddItemToSlot(ItemTitle title)
     {
-        /*Debug.Log(IsCheck(title));
-        if (IsCheck(title))
+        if (_holder.titleSlot.type == Type.NGANG)
         {
-            title.type = Type.NGANG;
+            Debug.Log("Ngang");
             _holder.MoveItemToSlot(title);
             _holder.AddTitle(title);
 
             TitleManager.Instance.items.Remove(title);
             TitleManager.Instance.CheckWin();
-            InitSlot(title, title.data.ID[0]);
-            return;
-        }*/
-
-        if (_holder.titleSlot.type == Type.NGANG)
-        {
-            Debug.Log("Ngang");
-            foreach (var item in title.data.ID)
+            foreach (var item2 in title.data.ID)
             {
-                if (_holder.titleSlot.data.ID[0] == item || _holder.titleSlot.data.ID[1] == item)
+                if (_holder.titleSlot.data.ID[0] != item2)
                 {
-                    _holder.MoveItemToSlot(title);
-                    _holder.AddTitle(title);
-
-                    TitleManager.Instance.items.Remove(title);
-                    TitleManager.Instance.CheckWin();
-                    foreach (var item2 in title.data.ID)
+                    if (_holder.titleSlot.data.ID[0] != item2)
                     {
-                        if (_holder.titleSlot.data.ID[0] != item2)
-                        {
-                            InitSlot(title, title.data.ID);
-                            break;
-                        }
+                        InitSlot(title, item2);
+                        break;
                     }
                 }
             }
@@ -69,7 +53,7 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
                     {
                         if (_holder.titleSlot.data.ID[0] != item2)
                         {
-                            InitSlot(title, title.data.ID);
+                            InitSlot(title, item2);
                             break;
                         }
                     }
@@ -77,44 +61,15 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
                 }
             }
         }
-
     }
 
-    public void InitSlot(ItemTitle itemTitle, List<int> id)//data slot
+    public void InitSlot(ItemTitle itemTitle, int id)//data slot
     {
         _holder.titleSlot = itemTitle;
         itemTitle.transform.parent = _holder.transform;
-        _holder.titleSlot.data.ID = id;
+        _holder.titleSlot.data.ID[0] = id;
         _holder.titleSlot.InitTitleData(_holder.titleSlot.data, TitleManager.Instance._spriteValue);
         _holder.titleSlot.SetTouch(false);
-        _holder.CheckPos();
-    }
-
-    private bool IsCheck(ItemTitle itemTitle) // check id 1-2 bằng nhau //
-    {
-        foreach (int id in _holder.titleSlot.data.ID)
-        {
-            if (itemTitle.data.ID.Contains(id))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void AddTileBooster(ItemTitle itemTitle)
-    {
-        _holder.MoveItemToSlot(itemTitle);
-        _holder.AddTitle(itemTitle);
-
-        TitleManager.Instance.items.Remove(itemTitle);
-
-        _holder.titleSlot = itemTitle;
-        itemTitle.transform.parent = _holder.transform;
-        _holder.titleSlot.data.ID = itemTitle.data.ID;
-        _holder.titleSlot.InitTitleData(_holder.titleSlot.data, TitleManager.Instance._spriteValue);
-        _holder.titleSlot.SetTouch(false);
-        _holder.titleSlot.type = Type.NGANG;
         _holder.CheckPos();
     }
 }
