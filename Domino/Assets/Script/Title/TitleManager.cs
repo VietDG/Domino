@@ -8,7 +8,8 @@ public enum Type
 {
     NONE,
     NGANG,
-    DOC
+    DOC,
+    AddTile
 }
 
 public class TitleManager : SingletonMonoBehaviour<TitleManager>
@@ -86,13 +87,5 @@ public class TitleManager : SingletonMonoBehaviour<TitleManager>
         {
             Debug.LogError("Win");
         }
-    }
-
-    private int _height = 1;
-    [SerializeField] private int _width = 1;
-
-    public void InitPos()
-    {
-
     }
 }
