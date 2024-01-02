@@ -101,6 +101,22 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
         }
         return false;
     }
+
+    public void AddTileBooster(ItemTitle itemTitle)
+    {
+        _holder.MoveItemToSlot(itemTitle);
+        _holder.AddTitle(itemTitle);
+
+        TitleManager.Instance.items.Remove(itemTitle);
+
+        _holder.titleSlot = itemTitle;
+        itemTitle.transform.parent = _holder.transform;
+        _holder.titleSlot.data.ID = itemTitle.data.ID;
+        _holder.titleSlot.InitTitleData(_holder.titleSlot.data, TitleManager.Instance._spriteValue);
+        _holder.titleSlot.SetTouch(false);
+        _holder.titleSlot.type = Type.NGANG;
+        _holder.CheckPos();
+    }
 }
 
 

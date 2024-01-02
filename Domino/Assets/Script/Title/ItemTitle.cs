@@ -75,7 +75,7 @@ public class ItemTitle : MonoBehaviour
         if (type == Type.AddTile)
         {
             Debug.LogError("add");
-            //SlotManager.Instance.AddTileBooster(this);
+            SlotManager.Instance.AddTileBooster(this);
             return;
         }
         SlotManager.Instance.AddItemToSlot(this);
