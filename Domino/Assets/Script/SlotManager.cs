@@ -5,6 +5,7 @@ using UnityEngine;
 public class SlotManager : SingletonMonoBehaviour<SlotManager>
 {
     [SerializeField] SlotHolder _holder;
+    [SerializeField] BonusTitle _bonusTitle;
 
     private ItemTitle itemTitle;
 
@@ -63,12 +64,12 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
 
     public void AddTileBooster(ItemTitle itemTitle)
     {
-        this.itemTitle = itemTitle;
         itemTitle.type = Type.NGANG;
         _holder.InitTitleDataToSlot(itemTitle);
+        _holder.RemoveDataFormList(itemTitle, true);
 
         _holder.titleSlot.InitTitleData(_holder.titleSlot.data, TitleManager.Instance._spriteValue);
 
-        _holder.RemoveDataFormList(itemTitle, true);
+        _bonusTitle.OnclickNewTitle(itemTitle);
     }
 }

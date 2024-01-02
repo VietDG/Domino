@@ -13,12 +13,21 @@ public class BonusTitle : MonoBehaviour
 
     [SerializeField] SlotHolder slotHolder;
 
+    [SerializeField] GameObject _addTile;
+    [SerializeField] AddBonusTitle _addBonusTitle;
+
     private int bonusTitleNumber = 3;
 
 
     private void Start()
     {
+        ActionEvent.OnAddBonusTitle += AddBonusTitle;
         AddBonusTitle();
+    }
+
+    private void OnDestroy()
+    {
+        ActionEvent.OnAddBonusTitle -= AddBonusTitle;
     }
 
     public void AddBonusTitle()
@@ -36,11 +45,22 @@ public class BonusTitle : MonoBehaviour
             bonusTitle.Add(item);
             item.type = Type.AddTile;
         }
+        //  _addBonusTitle.ResetPos();
+        _addTile.gameObject.SetActive(false);
     }
 
     public void OnclickNewTitle(ItemTitle title)
     {
         bonusTitle.Remove(title);
+        if (bonusTitle.Count == 0)
+        {
+            //_addBonusTitle.ResetPos();
+            Debug.LogError("het bai");
+            _addTile.gameObject.SetActive(true);
+            return;
+        }
+        _addTile.gameObject.SetActive(false);
         //  slotHolder.AddItemToSlot(title);
+
     }
 }

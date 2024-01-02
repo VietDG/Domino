@@ -72,7 +72,11 @@ public class SlotHolder : MonoBehaviour
 
     public void MoveItemNgang(ItemTitle itemTitle)
     {
-        itemTitle.transform.DOMove(new Vector3(trans.transform.position.x, trans.position.y + 0.5f), 0.25f);
+        itemTitle.transform.DOMove(new Vector3(trans.transform.position.x, trans.position.y + 0.5f), 1f).OnComplete(() =>
+        {
+            //   InitTitleDataToSlot(itemTitle);
+
+        });
     }
 
     public void InitTitleDataToSlot(ItemTitle itemTitle)
