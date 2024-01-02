@@ -23,7 +23,7 @@ public class TitleManager : SingletonMonoBehaviour<TitleManager>
 
     public Tilemap tileMap;
 
-    public Tile tile;
+    //public Tile tile;
 
     public List<ItemTitle> items = new List<ItemTitle>();
 
@@ -57,6 +57,24 @@ public class TitleManager : SingletonMonoBehaviour<TitleManager>
                     item.InitTitleData(data, _spriteValue);
                     items.Add(item);
                     item.gameObject.name = $"{rd}--{rd1}";
+
+                    if (data.pos.x > 0)
+                    {
+                        item.SetPosTitle(new Vector3(data.pos.x + 1f * (data.pos.x) / 2, data.pos.y, 0));
+                    }
+                    if (data.pos.x < 0)
+                    {
+                        item.SetPosTitle(new Vector3(data.pos.x - 1f * (-data.pos.x) / 2, data.pos.y, 0));
+                    }
+
+                    //if (data.pos.y > 0)
+                    //{
+                    //    item.SetPosTitle(new Vector3(data.pos.x, data.pos.y + 1f * (data.pos.y) / 2, 0));
+                    //}
+                    //if (data.pos.y < 0)
+                    //{
+                    //    item.SetPosTitle(new Vector3(data.pos.x, data.pos.y - 1f * (-data.pos.y) / 2, 0));
+                    //}
                 }
             }
         }
@@ -68,5 +86,13 @@ public class TitleManager : SingletonMonoBehaviour<TitleManager>
         {
             Debug.LogError("Win");
         }
+    }
+
+    private int _height = 1;
+    [SerializeField] private int _width = 1;
+
+    public void InitPos()
+    {
+
     }
 }
