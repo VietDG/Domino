@@ -12,6 +12,8 @@ public class SlotHolder : MonoBehaviour
 
     public List<int> idSlot = new List<int>();
 
+    public Transform trans;
+
     private void Start()
     {
         SpawnSlotTitle();
@@ -36,7 +38,7 @@ public class SlotHolder : MonoBehaviour
     {
         if (titleSlot.type == Type.NGANG)
         {
-            titleSlot.transform.position = this.transform.position;
+            titleSlot.transform.position = trans.transform.position;
             titleSlot.transform.Rotate(0, 0, 90);
             titleSlot.transform.position += new Vector3(0, 0.5f, 0);
             Debug.Log(1);
@@ -61,22 +63,27 @@ public class SlotHolder : MonoBehaviour
 
     public void MoveItemToSlot(ItemTitle itemTitle) // di chuyen vao o
     {
-        Vector3 target = new Vector3(this.transform.position.x, this.transform.position.y);
-        //  itemTitle.transform.DOMove(this.transform.position, 0.25f);
+        //  Vector3 target = new Vector3(trans.transform.position.x, trans.transform.position.y);
+        itemTitle.transform.DOMove(trans.transform.position, 0.25f);
 
-        Vector3 thisPos = this.transform.position;
-        float height = (thisPos - target).magnitude / 2;
-        Vector3 direc = (thisPos - target).normalized;
-        Vector3 topPos = (thisPos + target) / 2 + new Vector3(-direc.y, direc.x) * height;
+        //Vector3 thisPos = this.transform.position;
+        //float height = (thisPos - target).magnitude / 2;
+        //Vector3 direc = (thisPos - target).normalized;
+        //Vector3 topPos = (thisPos + target) / 2 + new Vector3(-direc.y, direc.x) * height;
 
-        itemTitle.transform.DORotate(new Vector3(0, 0, -360), 0.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear).OnComplete(() =>
-        {
-            //  titleSlot.InitTitleData(titleSlot.data, TitleManager.Instance._spriteValue);
+        //itemTitle.transform.DORotate(new Vector3(0, 0, -360), 0.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear).OnComplete(() =>
+        //{
+        //    //  titleSlot.InitTitleData(titleSlot.data, TitleManager.Instance._spriteValue);
 
-        });
-        itemTitle.transform.DOPath(new Vector3[] { thisPos, topPos, target }, 0.6f, PathType.CatmullRom).OnComplete(() =>
-        {
-        });
+        //});
+        //itemTitle.transform.DOPath(new Vector3[] { thisPos, topPos, target }, 0.6f, PathType.CatmullRom).OnComplete(() =>
+        //{
+        //});
+    }
+
+    public void MoveItemNgang(ItemTitle itemTitle)
+    {
+        itemTitle.transform.DOMove(new Vector3(trans.transform.position.x, trans.position.y + 0.5f), 0.25f);
     }
 }
 
