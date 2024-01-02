@@ -5,24 +5,17 @@ using UnityEngine;
 public class SlotManager : SingletonMonoBehaviour<SlotManager>
 {
     [SerializeField] SlotHolder _holder;
-    //  [SerializeField] ItemTitle titleSlot;
 
-
-    private void Start()
-    {
-
-    }
-
+    private ItemTitle itemTitle;
 
     public void AddItemToSlot(ItemTitle title)
     {
+        this.itemTitle = title;
+
         if (_holder.titleSlot.type == Type.NGANG)
         {
             Debug.Log("Ngang");
-            _holder.MoveItemToSlot(title);
-            _holder.AddTitle(title);
-
-            TitleManager.Instance.items.Remove(title);
+            _holder.RemoveDataFormList(title, false);
             TitleManager.Instance.CheckWin();
             foreach (var item2 in title.data.ID)
             {
@@ -30,7 +23,7 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
                 {
                     if (_holder.titleSlot.data.ID[0] != item2)
                     {
-                        InitSlot(title, item2);
+                        InitSlot(item2);
                         break;
                     }
                 }
@@ -44,16 +37,13 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
             {
                 if (_holder.titleSlot.data.ID[0] == item)
                 {
-                    _holder.MoveItemToSlot(title);
-                    _holder.AddTitle(title);
-
-                    TitleManager.Instance.items.Remove(title);
+                    _holder.RemoveDataFormList(title, false);
                     TitleManager.Instance.CheckWin();
                     foreach (var item2 in title.data.ID)
                     {
                         if (_holder.titleSlot.data.ID[0] != item2)
                         {
-                            InitSlot(title, item2);
+                            InitSlot(item2);
                             break;
                         }
                     }
@@ -63,36 +53,22 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
         }
     }
 
-    public void InitSlot(ItemTitle itemTitle, int id)//data slot
+    public void InitSlot(int id)//data slot
     {
-        _holder.titleSlot = itemTitle;
-        itemTitle.transform.parent = _holder.trans.transform;
+        _holder.InitTitleDataToSlot(itemTitle);
         _holder.titleSlot.data.ID[0] = id;
-        _holder.titleSlot.InitTitleData(_holder.titleSlot.data, TitleManager.Instance._spriteValue);
 
-        _holder.titleSlot.SetTouch(false);
-        _holder.CheckPos();
+        _holder.titleSlot.InitTitleData(_holder.titleSlot.data, TitleManager.Instance._spriteValue);
     }
 
     public void AddTileBooster(ItemTitle itemTitle)
     {
-        _holder.MoveItemNgang(itemTitle);
-        _holder.AddTitle(itemTitle);
+        this.itemTitle = itemTitle;
+        itemTitle.type = Type.NGANG;
+        _holder.InitTitleDataToSlot(itemTitle);
 
-        TitleManager.Instance.items.Remove(itemTitle);
-
-
-        _holder.titleSlot = itemTitle;
-        itemTitle.transform.parent = _holder.trans.transform;
-        _holder.titleSlot.data = itemTitle.data;
         _holder.titleSlot.InitTitleData(_holder.titleSlot.data, TitleManager.Instance._spriteValue);
 
-        _holder.titleSlot.type = Type.NGANG;
-        _holder.titleSlot.SetTouch(false);
-        _holder.CheckPos();
+        _holder.RemoveDataFormList(itemTitle, true);
     }
 }
-
-
-
-
