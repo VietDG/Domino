@@ -72,6 +72,12 @@ public class ItemTitle : MonoBehaviour
     {
         // if (TitleManager.Instance.hold.CompareIds(data.ID[0], data.ID[1]))
         //  {
+        if (type == Type.AddTile)
+        {
+            Debug.LogError("add");
+            SlotManager.Instance.AddTileBooster(this);
+            return;
+        }
         SlotManager.Instance.AddItemToSlot(this);
 
         // }

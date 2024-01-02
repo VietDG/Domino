@@ -63,9 +63,28 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
     public void InitSlot(ItemTitle itemTitle, int id)//data slot
     {
         _holder.titleSlot = itemTitle;
-        itemTitle.transform.parent = _holder.transform;
+        itemTitle.transform.parent = _holder.trans.transform;
         _holder.titleSlot.data.ID[0] = id;
         _holder.titleSlot.InitTitleData(_holder.titleSlot.data, TitleManager.Instance._spriteValue);
+
+        _holder.titleSlot.SetTouch(false);
+        _holder.CheckPos();
+    }
+
+    public void AddTileBooster(ItemTitle itemTitle)
+    {
+        _holder.MoveItemNgang(itemTitle);
+        _holder.AddTitle(itemTitle);
+
+        TitleManager.Instance.items.Remove(itemTitle);
+
+
+        _holder.titleSlot = itemTitle;
+        itemTitle.transform.parent = _holder.trans.transform;
+        _holder.titleSlot.data = itemTitle.data;
+        _holder.titleSlot.InitTitleData(_holder.titleSlot.data, TitleManager.Instance._spriteValue);
+
+        _holder.titleSlot.type = Type.NGANG;
         _holder.titleSlot.SetTouch(false);
         _holder.CheckPos();
     }
