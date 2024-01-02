@@ -28,11 +28,8 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
             {
                 if (_holder.titleSlot.data.ID[0] != item2)
                 {
-                    if (_holder.titleSlot.data.ID[0] != item2)
-                    {
-                        InitSlot(title, item2);
-                        break;
-                    }
+                    InitSlot(title, item2);
+                    break;
                 }
             }
             return;
