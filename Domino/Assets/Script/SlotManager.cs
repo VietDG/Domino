@@ -27,12 +27,11 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
         }
     }
 
-    public void InitSlot(int id)//data slot
+    public void InitSlot(int id, int id2)//data slot
     {
-        Debug.LogError(id);
         _holder.InitTitleDataToSlot(itemTitle);
         _holder.titleSlot.data.ID[0] = id;
-        _holder.titleSlot.data.ID[1] = id;
+        _holder.titleSlot.data.ID[1] = id2;
 
         _holder.titleSlot.InitTitleData(_holder.titleSlot.data, TitleManager.Instance._spriteValue);
     }
@@ -50,30 +49,31 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
 
     private void TypeHorizontal(ItemTitle title)
     {
-        if (title.data.ID[0] == _holder.titleSlot.data.ID[0] && title.data.ID[1] == _holder.titleSlot.data.ID[1])
+        if (title.data.ID[0] == _holder.titleSlot.data.ID[0] && title.data.ID[1] == _holder.titleSlot.data.ID[1]
+        || title.data.ID[0] == _holder.titleSlot.data.ID[1] && title.data.ID[1] == _holder.titleSlot.data.ID[0])
         {
             title.type = Type.NGANG;
             _holder.RemoveDataFormList(itemTitle, true);
             TitleManager.Instance.CheckWin();
-            InitSlot(title.data.ID[0]);
-            Debug.Log(3);
+            InitSlot(_holder.titleSlot.data.ID[0], _holder.titleSlot.data.ID[1]);
+            Debug.Log("Ngang bú");
             return;
         }
-        Debug.LogWarning($"{title.data.ID[0] == _holder.titleSlot.data.ID[0]}-----1{title.data.ID[0] == _holder.titleSlot.data.ID[1]}");
+
         if (title.data.ID[0] == _holder.titleSlot.data.ID[0] || title.data.ID[0] == _holder.titleSlot.data.ID[1])
         {
             RemoveTitle(title);
-            InitSlot(title.data.ID[1]);
+            InitSlot(title.data.ID[1], title.data.ID[1]);
             Debug.Log(1);
             return;
         }
-        Debug.LogWarning($"{title.data.ID[1] == _holder.titleSlot.data.ID[0]}-----2{title.data.ID[1] == _holder.titleSlot.data.ID[1]}");
 
         if (title.data.ID[1] == _holder.titleSlot.data.ID[0] || title.data.ID[1] == _holder.titleSlot.data.ID[1])
         {
             RemoveTitle(title);
-            InitSlot(title.data.ID[0]);
+            InitSlot(title.data.ID[0], title.data.ID[0]);
             Debug.Log(2);
+            return;
         }
     }
 
@@ -85,7 +85,7 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
             title.type = Type.NGANG;
             _holder.RemoveDataFormList(itemTitle, true);
             TitleManager.Instance.CheckWin();
-            InitSlot(title.data.ID[0]);
+            InitSlot(title.data.ID[0], title.data.ID[1]);
             return;
         }
 
@@ -98,7 +98,7 @@ public class SlotManager : SingletonMonoBehaviour<SlotManager>
                 {
                     if (_holder.titleSlot.data.ID[0] != item2)
                     {
-                        InitSlot(item2);
+                        InitSlot(item2, item2);
                         break;
                     }
                 }
